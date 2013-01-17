@@ -1,0 +1,9 @@
+URxvt*perl-ext: tabbed
+URxvt.tabbed.tab-bg: 4
+URxvt.font: xft:Monaco:pixelsize=14
+URxvt.boldFont: xft:Monaco:pixelsize=14
+URxvt.transparent: false
+URxvt*scrollBar: false
+URxvt*background: #131313
+URxvt*foreground: #D0D0D0
+
