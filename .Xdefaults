@@ -1,6 +1,4 @@
-URxvt*perl-ext: tabbed
-URxvt.tabbed.tab-bg: 4
-URxvt.font: xft:Monaco:pixelsize=14
+URxvt.font: xft:Ubuntu mono:pixelsize=18
 URxvt.boldFont: xft:Monaco:pixelsize=14
 URxvt.transparent: false
 URxvt*scrollBar: false

@@ -375,7 +375,7 @@ awful.rules.rules = {
       properties = { tag = tags[1][1] } },
     { rule = { class = "Skype" },
       properties = { tag = tags[1][9] } },
-    { rule = { class = "URxvt" },
+    { rule = { class = "Guake" },
       properties = { tag = tags[1][2] } },
     { rule = { class = "Pidgin" },
       properties = { tag = tags[1][8] } }

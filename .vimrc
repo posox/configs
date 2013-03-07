@@ -50,7 +50,7 @@ set nu
 set paste
 
 " цветовая схема
-colorscheme koehler
+colorscheme xoria256
 
 " включить подсветку синтаксиса
 syntax enable
@@ -83,6 +83,6 @@ set guioptions-=T
 " clang complete
 let g:clang_complete_copen=1
 let g:clang_complete_debug=1
-let g:clang_use_library=0
+let g:clang_use_library=1
 let g:clang_complete_auto=1
 let g:clang_snippets=1
