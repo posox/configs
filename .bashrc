@@ -28,6 +28,5 @@ source /etc/profile
 alias ll='ls -lah'
 alias sroot='su - root'
 
-# idea
-export PATH=$PATH:/home/serg/ide/idea-IC-123.72/bin
-
+# java
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'

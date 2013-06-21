@@ -16,16 +16,6 @@ set hls
 " использовать инкрементальный поиск
 set is
 
-" ширина текста 
-set textwidth=120
-
-" минимальная высота окна пусть будет 0 (по умолчанию - 1)
-set winminheight=0
-
-" всегда делать активное окно максимального размера
-set noequalalways
-set winheight=9999
-
 " настраиваю для работы с русскими словами (чтобы w, b, * понимали
 " русские слова)
 set iskeyword=@,48-57,_,192-255
@@ -55,34 +45,59 @@ colorscheme xoria256
 " включить подсветку синтаксиса
 syntax enable
 
-" дополнение для c/c++
-set nocp
-filetype plugin on
-
 " умные отступы
 set autoindent
-filetype plugin indent on
 
 " фолдинг
-set foldenable 
+set nofoldenable
 set foldmethod=syntax
-set foldnestmax=1
-
-" запрос н сохранение перед закрытием
-set confirm
-
-" pathogen
-call pathogen#infect()
 
 " подсвечивать строку
 set cursorline
 
 " убрать кнопки
-set guioptions-=T
+set guioptions=c
 
-" clang complete
-let g:clang_complete_copen=1
-let g:clang_complete_debug=1
-let g:clang_use_library=1
-let g:clang_complete_auto=1
-let g:clang_snippets=1
+" совместимость с vi
+set nocompatible
+
+" swp
+set backupdir=~/.vim/backup/
+set directory=~/.vim/backup/
+
+" buffers
+map <C-Tab> :bnext<cr>
+map <C-S-Tab> :bprevious<cr>
+imap <C-Tab> :bnext<cr>
+imap <C-S-Tab> :bprevious<cr>
+
+
+" vundle
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" plugins
+Bundle 'gmarik/vundle'
+Bundle 'scrooloose/nerdtree.git'
+Bundle 'hdima/python-syntax.git'
+Bundle 'fholgado/minibufexpl.vim.git'
+Bundle 'taglist.vim'
+Bundle 'sickill/vim-monokai.git'
+
+filetype plugin indent on 
+
+"
+" plugins setup
+"
+
+" pydoc
+let g:pydoc_cmd = '/usr/bin/pydoc'
+let g:pydoc_open_cmd = 'vsplit'
+
+" python highlight
+let python_highlight_all = 1
+
+" miniBufExpl
+let g:miniBufExplMaxSize = 1
+
