@@ -1,3 +1,18 @@
+" vundle
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" plugins
+Bundle 'gmarik/vundle'
+Bundle 'scrooloose/nerdtree.git'
+Bundle 'hdima/python-syntax.git'
+Bundle 'fholgado/minibufexpl.vim.git'
+Bundle 'taglist.vim'
+Bundle 'sickill/vim-monokai.git'
+
+filetype plugin indent on 
+
 " установить keymap, чтобы по Ctrl+^ переключался на русский и обратно
 set keymap=russian-jcukenwin 
 
@@ -37,7 +52,7 @@ set dy=lastline
 set nu
 
 " вставка с фрматированием
-set paste
+" set paste
 
 " цветовая схема
 colorscheme xoria256
@@ -71,21 +86,9 @@ map <C-S-Tab> :bprevious<cr>
 imap <C-Tab> :bnext<cr>
 imap <C-S-Tab> :bprevious<cr>
 
-
-" vundle
-filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" plugins
-Bundle 'gmarik/vundle'
-Bundle 'scrooloose/nerdtree.git'
-Bundle 'hdima/python-syntax.git'
-Bundle 'fholgado/minibufexpl.vim.git'
-Bundle 'taglist.vim'
-Bundle 'sickill/vim-monokai.git'
-
-filetype plugin indent on 
+" colorcolumn
+highlight OverLength ctermbg=blue ctermfg=white guibg=blue
+match OverLength /\%81v.\+/
 
 "
 " plugins setup
