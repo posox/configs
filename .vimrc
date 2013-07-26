@@ -7,9 +7,11 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree.git'
 Bundle 'hdima/python-syntax.git'
-Bundle 'fholgado/minibufexpl.vim.git'
+"Bundle 'fholgado/minibufexpl.vim.git'
 Bundle 'taglist.vim'
 Bundle 'sickill/vim-monokai.git'
+Bundle 'bling/vim-bufferline'
+Bundle 'bling/vim-airline'
 
 filetype plugin indent on 
 
@@ -90,9 +92,8 @@ imap <C-S-Tab> :bprevious<cr>
 highlight OverLength ctermbg=blue ctermfg=white guibg=blue
 match OverLength /\%81v.\+/
 
-"
+
 " plugins setup
-"
 
 " pydoc
 let g:pydoc_cmd = '/usr/bin/pydoc'
