@@ -12,6 +12,7 @@ Bundle 'taglist.vim'
 Bundle 'sickill/vim-monokai.git'
 Bundle 'bling/vim-bufferline'
 Bundle 'bling/vim-airline'
+Bundle 'klen/python-mode'
 
 filetype plugin indent on 
 
