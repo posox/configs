@@ -6,3 +6,5 @@
 
 export TERM=xterm-256color
 source /etc/profile
+
+export PIP_DOWNLOAD_CACHE=$HOME/.pip_download_cache
