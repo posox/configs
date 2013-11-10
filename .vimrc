@@ -6,11 +6,8 @@ call vundle#rc()
 " plugins
 Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree.git'
-Bundle 'hdima/python-syntax.git'
-"Bundle 'fholgado/minibufexpl.vim.git'
 Bundle 'taglist.vim'
 Bundle 'sickill/vim-monokai.git'
-Bundle 'bling/vim-bufferline'
 Bundle 'bling/vim-airline'
 Bundle 'klen/python-mode'
 
@@ -69,6 +66,7 @@ set autoindent
 " фолдинг
 set nofoldenable
 set foldmethod=syntax
+set foldlevelstart=1
 
 " подсвечивать строку
 set cursorline

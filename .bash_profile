@@ -5,6 +5,7 @@
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 export TERM=xterm-256color
+export PATH=$PATH:/home/serg/.local/bin
 source /etc/profile
 
 export PIP_DOWNLOAD_CACHE=$HOME/.pip_download_cache

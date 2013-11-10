@@ -30,6 +30,4 @@ alias sroot='su - root'
 
 # java
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
-
 export PATH=$PATH:/home/serg/.local/bin
-

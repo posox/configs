@@ -1,1 +1,1 @@
-set guifont=Monaco\ 9
+set guifont=Source\ Code\ Pro\ for\ Powerline\ Medium\ 10
