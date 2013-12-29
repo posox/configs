@@ -89,7 +89,7 @@ imap <C-S-Tab> :bprevious<cr>
 
 " colorcolumn
 highlight OverLength ctermbg=blue ctermfg=white guibg=blue
-match OverLength /\%81v.\+/
+au! FileType python,c match OverLength /\%80v.\+/
 
 
 " plugins setup
@@ -103,4 +103,3 @@ let python_highlight_all = 1
 
 " miniBufExpl
 let g:miniBufExplMaxSize = 1
-
