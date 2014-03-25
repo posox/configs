@@ -19,7 +19,10 @@ fi
 export EDITOR=/usr/bin/vim
 
 # terminal color
-export TERM=xterm-256color
+if [ "$COLORTERM" == "gnome-terminal" ]
+then
+    export TERM=xterm-256color
+fi
 
 # env
 source /etc/profile 

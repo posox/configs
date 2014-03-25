@@ -40,18 +40,18 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/home/serg/.config/awesome/theme/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/theme/theme.lua")
+--beautiful.init(awful.util.getdir("config") .. "/themes/penumbra/theme.lua")
+
 
 -- This is used later as the default terminal and editor to run.
-terminal = "terminator"
+terminal = "urxvt"
 editor = os.getenv("EDITOR") or "vim"
 browser = "firefox-bin"
 
-
-
 exec_term = function (cmd)
     if cmd then
-        return terminal .. " -x " .. cmd
+        return terminal .. " -e " .. cmd
     else
         return terminal
     end
@@ -73,16 +73,8 @@ local layouts =
 {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier
 }
 -- }}}
 
@@ -99,8 +91,14 @@ end
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
+    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[2])
 end
+
+-- layouts
+awful.layout.set(layouts[3], tags[1][1])
+
+-- size
+awful.tag.incmwfact(0.35, tags[1][9])
 -- }}}
 
 -- {{{ Menu
@@ -114,11 +112,11 @@ myawesomemenu = {
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "terminal", terminal },
-                                    { "browser", browser },
-                                    { "skype", "skype" },
-                                    { "mc", exec_term("mc") },
-                                    { "ncmpcpp", exec_term("ncmpcpp") },
-                                    { "transmission", "transmission-gtk" },
+                                    { "browser", browser, beautiful.firefox_icon },
+                                    { "skype", "skype", beautiful.skype_icon },
+                                    { "mc", exec_term("mc -S xoria256") },
+                                    { "ncmpcpp", exec_term("ncmpcpp"), beautiful.nusic_icon },
+                                    { "transmission", "transmission-gtk", beautiful.torrent_icon },
                                   }
                         })
 
@@ -130,13 +128,13 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 -- Blingbling widgets
-volume_widget = blingbling.volume({height = 18, width = 40, bar =true, show_text = true, label ="$percent%"})
+volume_widget = blingbling.volume({height = 16, width = 40, bar = true, show_text = true, label ="$percent%"})
 volume_widget:update_master()
 volume_widget:set_master_control()
 
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock()
+mytextclock = awful.widget.textclock(" %H:%M ")
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -186,23 +184,6 @@ mytasklist.buttons = awful.util.table.join(
                                               if client.focus then client.focus:raise() end
                                           end))
 
--- keyboard layout widget
-kbdcfg = {}
-kbdcfg.cmd = "setxkbmap"
-kbdcfg.layout = { { "us", "" }, { "ru", "" } }
-kbdcfg.current = 1  -- us is our default layout
-kbdcfg.widget = wibox.widget.textbox()
-kbdcfg.widget:set_text(" " .. kbdcfg.layout[kbdcfg.current][1] .. " ")
-kbdcfg.switch = function ()
-    kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
-    local t = kbdcfg.layout[kbdcfg.current]
-    kbdcfg.widget:set_text(" " .. t[1] .. " ")
-    os.execute( kbdcfg.cmd .. " " .. t[1] .. " " .. t[2] )
-end
-kbdcfg.widget:buttons(
-    awful.util.table.join(awful.button({ }, 1, function () kbdcfg.switch() end))
-)
-
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
     mypromptbox[s] = awful.widget.prompt()
@@ -231,9 +212,8 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
-    -- right_layout:add(volume_widget)
+    right_layout:add(volume_widget)
     if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(kbdcfg.widget)
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
 
@@ -316,7 +296,7 @@ globalkeys = awful.util.table.join(
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end),
     -- User binding
-    awful.key({}, "Caps_Lock", function () kbdcfg.switch() end)
+    awful.key({ modkey, "Control" }, "l",     function () awful.util.spawn("xscreensaver-command -lock") end)
 )
 
 clientkeys = awful.util.table.join(
@@ -398,15 +378,13 @@ awful.rules.rules = {
                      focus = awful.client.focus.filter,
                      keys = clientkeys,
                      buttons = clientbuttons } },
-    { rule = { class = "MPlayer" },
-      properties = { floating = true } },
-    { rule = { class = "pinentry" },
-      properties = { floating = true } },
-    { rule = { class = "gimp" },
-      properties = { floating = true } },
-    -- Set Firefox to always map on tags number 2 of screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { tag = tags[1][2] } },
+
+    { rule = { class = "Firefox" },
+      properties = { tag = tags[1][1] } },
+    { rule = { class = "Skype", role = "ConversationsWindow" },
+      properties = { tag = tags[1][9] } },
+    { rule = { class = "Skype" },
+      properties = { tag = tags[1][9] } },
 }
 -- }}}
 
@@ -481,4 +459,21 @@ end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+-- }}}
+
+-- {{{ Startup
+function run_once(args)
+    if not args then
+        return
+    end
+    cmd = ""
+    for i,arg in pairs(args) do
+        cmd = cmd .. arg .. " "
+    end
+    awful.util.spawn_with_shell("pgrep -u $USER -x " .. args[1] .. " || (" .. cmd .. ")")
+end
+
+
+run_once({"setxkbmap", "-layout", "\"us,ru\"", "-option", "\"grp:caps_toggle\""})
+run_once({"xscreensaver", "-nosplash", "&"})
 -- }}}

@@ -1,80 +1,53 @@
-" vundle
+" vundle setup
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " plugins
-Bundle 'gmarik/vundle'
-Bundle 'scrooloose/nerdtree.git'
-Bundle 'taglist.vim'
-Bundle 'sickill/vim-monokai.git'
 Bundle 'bling/vim-airline'
+Bundle 'bling/vim-bufferline'
+Bundle 'daylerees/colour-schemes'
+Bundle 'gmarik/vundle'
 Bundle 'klen/python-mode'
+Bundle 'scrooloose/nerdtree.git'
+Bundle 'sickill/vim-monokai.git'
+Bundle 'taglist.vim'
 
 filetype plugin indent on 
 
-" установить keymap, чтобы по Ctrl+^ переключался на русский и обратно
-set keymap=russian-jcukenwin 
-
-" по умолчанию - латинская раскладка
-set iminsert=0
-
-" по умолчанию - латинская раскладка при поиске
-set imsearch=0
-
-" игнорировать регистр при поиске
+" find
 set ic
-
-" подсвечивать поиск
 set hls
-
-" использовать инкрементальный поиск
 set is
 
-" настраиваю для работы с русскими словами (чтобы w, b, * понимали
-" русские слова)
-set iskeyword=@,48-57,_,192-255
-
-" задать размер табуляции в четыре пробела
+" tabs
 set ts=4
 set expandtab
 set shiftwidth=4
 set softtabstop=4
 
-" отображение выполняемой команды
 set showcmd 
-
-" перенос по словам, а не по буквам
 set linebreak
 set dy=lastline
-
-" включить нумерацию строк
 set nu
+set nopaste
 
-" вставка с фрматированием
-" set paste
-
-" цветовая схема
-colorscheme xoria256
-
-" включить подсветку синтаксиса
+" colors
+if $TERM =~ "256"
+    set t_Co=256
+    colorscheme xoria256
+endif
 syntax enable
 
-" умные отступы
 set autoindent
 
-" фолдинг
+" folding
 set nofoldenable
 set foldmethod=syntax
 set foldlevelstart=1
 
-" подсвечивать строку
 set cursorline
-
-" убрать кнопки
 set guioptions=c
-
-" совместимость с vi
 set nocompatible
 
 " swp
@@ -88,7 +61,7 @@ imap <C-Tab> :bnext<cr>
 imap <C-S-Tab> :bprevious<cr>
 
 " colorcolumn
-highlight OverLength ctermbg=blue ctermfg=white guibg=blue
+highlight OverLength ctermbg=red ctermfg=white guibg=red
 au! FileType python,c match OverLength /\%80v.\+/
 
 
@@ -101,5 +74,7 @@ let g:pydoc_open_cmd = 'vsplit'
 " python highlight
 let python_highlight_all = 1
 
-" miniBufExpl
-let g:miniBufExplMaxSize = 1
+" vim airline
+let g:airline_powerline_fonts = 1
+
+let vimpager_passthrough = 1 
