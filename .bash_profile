@@ -5,4 +5,4 @@
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 [[ -f /etc/profile ]] && . /etc/profile
 
-export PATH=$PATH:/home/serg/.local/bin
+export PATH=$PATH:$HOME/.local/bin

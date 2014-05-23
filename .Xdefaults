@@ -1,6 +1,6 @@
 ! urxvt setup
-URxvt.font: xft:Ubuntu mono derivative Powerline:pixelsize=16
-URxvt.boldFont: xft:Ubuntu mono derivative Powerline:pixelsize=16
+URxvt.font: xft:Ubuntu mono derivative Powerline:size=13
+URxvt.boldFont: xft:Ubuntu mono derivative Powerline:size=13
 URxvt.transparent: false
 URxvt*scrollBar: false
 URxvt.letterSpace: -1
