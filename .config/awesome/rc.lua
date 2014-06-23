@@ -296,7 +296,7 @@ globalkeys = awful.util.table.join(
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end),
     -- User binding
-    awful.key({ modkey, "Control" }, "l",     function () awful.util.spawn("slimlock") end)
+    awful.key({ modkey, "Control" }, "l",     function () awful.util.spawn("xautolock -locknow") end)
 )
 
 clientkeys = awful.util.table.join(
@@ -475,4 +475,5 @@ end
 
 
 run_once({"setxkbmap", "-layout", "\"us,ru\"", "-option", "\"grp:caps_toggle\""})
+run_once({"xautolock", "-time", "5", "-locker", "i3lock-blur"})
 -- }}}
