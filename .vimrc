@@ -12,6 +12,7 @@ Bundle 'klen/python-mode'
 Bundle 'scrooloose/nerdtree.git'
 Bundle 'sickill/vim-monokai.git'
 Bundle 'taglist.vim'
+Bundle 'vim-flake8'
 
 filetype plugin indent on 
 
@@ -36,6 +37,8 @@ set nopaste
 if $TERM =~ "256"
     set t_Co=256
     colorscheme xoria256
+else
+    colorscheme desert
 endif
 syntax enable
 
@@ -62,7 +65,7 @@ imap <C-S-Tab> :bprevious<cr>
 
 " colorcolumn
 highlight OverLength ctermbg=red ctermfg=white guibg=red
-au! FileType python,c match OverLength /\%80v.\+/
+au! FileType python,c,rst match OverLength /\%80v.\+/
 
 
 " plugins setup
@@ -73,6 +76,7 @@ let g:pydoc_open_cmd = 'vsplit'
 
 " python highlight
 let python_highlight_all = 1
+let g:pymode_trim_whitespaces = 1
 
 " vim airline
 let g:airline_powerline_fonts = 1

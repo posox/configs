@@ -9,28 +9,5 @@
 # Test for an interactive shell.  There is no need to set anything
 # past this point for scp and rcp, and it's important to refrain from
 # outputting anything in those cases.
-if [[ $- != *i* ]] ; then
-	# Shell is non-interactive.  Be done now!
-	return
-fi
 
-
-# Put your fun stuff here.
-export EDITOR=/usr/bin/vim
-
-# terminal color
-if [ "$COLORTERM" == "gnome-terminal" ]
-then
-    export TERM=xterm-256color
-fi
-
-# env
-source /etc/profile 
-
-#alias
-alias ll='ls -lah'
-alias sroot='su - root'
-
-# java
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
-export PATH=$PATH:/home/serg/.local/bin
+[[ -f ~/.bash_alias ]] && source ~/.bash_alias

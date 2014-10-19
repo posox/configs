@@ -7,6 +7,8 @@ require("awful.autofocus")
 local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
+beautiful.init(awful.util.getdir("config") .. "/theme/theme.lua")
+
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
@@ -39,10 +41,6 @@ end
 -- }}}
 
 -- {{{ Variable definitions
--- Themes define colours, icons, and wallpapers
-beautiful.init(awful.util.getdir("config") .. "/theme/theme.lua")
---beautiful.init(awful.util.getdir("config") .. "/themes/penumbra/theme.lua")
-
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
@@ -128,7 +126,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 -- Blingbling widgets
-volume_widget = blingbling.volume({height = 16, width = 40, bar = true, show_text = true, label ="$percent%"})
+volume_widget = blingbling.volume({height = 16, width = 40, bar = false, show_text = true, label ="$percent%"})
 volume_widget:update_master()
 volume_widget:set_master_control()
 
@@ -475,5 +473,5 @@ end
 
 
 run_once({"setxkbmap", "-layout", "\"us,ru\"", "-option", "\"grp:caps_toggle\""})
-run_once({"xautolock", "-time", "5", "-locker", "i3lock-blur"})
+run_once({"xautolock", "-time", "5", "-locker", "i3lock"})
 -- }}}
